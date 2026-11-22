@@ -1,0 +1,7 @@
+Invitation from {{ organization.name }}
+
+{{ invitation.message }}
+
+View the invitation: {{ app_url }}{{ link|default:'/dashboard/job-seeker' }}
+
+This is an automated message from TalentBridge.

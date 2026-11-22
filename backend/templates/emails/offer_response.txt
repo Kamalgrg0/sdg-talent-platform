@@ -1,0 +1,9 @@
+{{ applicant.name }} has {{ response }} the offer: {{ opportunity.title }}
+
+Applicant: {{ applicant.name }} ({{ applicant.email }})
+Decision: {{ response }}
+
+Open the applicant pipeline:
+{{ app_url }}{{ link|default:'/dashboard/employer' }}
+
+This is an automated message from TalentBridge.

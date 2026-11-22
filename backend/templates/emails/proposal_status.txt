@@ -1,0 +1,7 @@
+Proposal update: {{ project.title }}
+
+Your proposal status is now {{ proposal.get_status_display }}.
+
+Open your dashboard: {{ app_url }}{{ link|default:'/dashboard/freelancer' }}
+
+This is an automated message from TalentBridge.

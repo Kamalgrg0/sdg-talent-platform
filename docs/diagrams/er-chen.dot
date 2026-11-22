@@ -1,0 +1,169 @@
+digraph ER_Chen {
+  graph [rankdir=LR, splines=ortho, nodesep=0.35, ranksep=0.75, fontname="Arial", fontsize=11];
+  node [fontname="Arial", fontsize=10];
+  edge [fontname="Arial", fontsize=9, color="#334e68", dir=none];
+
+  // ---------- ENTITIES ----------
+  U   [shape=box, style="filled", fillcolor="#EAF1FF", color="#164A8A", label=<<b>users</b>>];
+  P   [shape=box, style="filled", fillcolor="#EAF1FF", color="#164A8A", label=<<b>profiles</b>>];
+  O   [shape=box, style="filled", fillcolor="#EAF1FF", color="#164A8A", label=<<b>organizations</b>>];
+  SK  [shape=box, style="filled", fillcolor="#E7F5EE", color="#1F7A4D", label=<<b>skills</b>>];
+  SC  [shape=box, style="filled", fillcolor="#E7F5EE", color="#1F7A4D", label=<<b>skill_categories</b>>];
+  SDG [shape=box, style="filled", fillcolor="#E7F5EE", color="#1F7A4D", label=<<b>sdgs</b>>];
+  OPP [shape=box, style="filled", fillcolor="#FFF7E6", color="#9A6700", label=<<b>opportunities</b>>];
+  APP [shape=box, style="filled", fillcolor="#FFF7E6", color="#9A6700", label=<<b>applications</b>>];
+  TP  [shape=box, style="filled", fillcolor="#FFF7E6", color="#9A6700", label=<<b>talent_projects</b>>];
+  FP  [shape=box, style="filled", fillcolor="#FFF7E6", color="#9A6700", label=<<b>freelance_projects</b>>];
+  PRO [shape=box, style="filled", fillcolor="#FFF7E6", color="#9A6700", label=<<b>proposals</b>>];
+  CP  [shape=box, style="filled", fillcolor="#F3EEFF", color="#5B3FA6", label=<<b>community_posts</b>>];
+  CM  [shape=box, style="filled", fillcolor="#F3EEFF", color="#5B3FA6", label=<<b>comments</b>>];
+  INV [shape=box, style="filled", fillcolor="#FFF7E6", color="#9A6700", label=<<b>invitations</b>>];
+
+  // ---------- ATTRIBUTES ----------
+  u_id   [shape=ellipse, label=<<u>id</u>>];
+  u_name [shape=ellipse, label="name"];
+  u_email[shape=ellipse, label="email"];
+  u_pwd  [shape=ellipse, label="password_hash"];
+  u_role [shape=ellipse, label="role"];
+  u_stat [shape=ellipse, label="status"];
+
+  p_id   [shape=ellipse, label=<<u>id</u>>];
+  p_uid  [shape=ellipse, label="user_id"];
+  p_phone[shape=ellipse, label="phone"];
+  p_loc  [shape=ellipse, label="location"];
+  p_title[shape=ellipse, label="professional_title"];
+  p_avail[shape=ellipse, label="availability"];
+  p_pub  [shape=ellipse, label="is_public"];
+
+  o_id   [shape=ellipse, label=<<u>id</u>>];
+  o_owner[shape=ellipse, label="owner_user_id"];
+  o_name [shape=ellipse, label="name"];
+  o_slug [shape=ellipse, label="slug"];
+  o_ver  [shape=ellipse, label="is_verified"];
+
+  s_id   [shape=ellipse, label=<<u>id</u>>];
+  s_name [shape=ellipse, label="name"];
+  s_slug [shape=ellipse, label="slug"];
+  sc_id  [shape=ellipse, label=<<u>id</u>>];
+  sc_name[shape=ellipse, label="name"];
+  sdg_id [shape=ellipse, label=<<u>id</u>>];
+  sdg_cd [shape=ellipse, label="code"];
+  sdg_nm [shape=ellipse, label="name"];
+
+  opp_id [shape=ellipse, label=<<u>id</u>>];
+  opp_t  [shape=ellipse, label="title"];
+  opp_ty [shape=ellipse, label="type"];
+  opp_dl [shape=ellipse, label="deadline"];
+  opp_st [shape=ellipse, label="status"];
+
+  app_id [shape=ellipse, label=<<u>id</u>>];
+  app_cl [shape=ellipse, label="cover_letter"];
+  app_st [shape=ellipse, label="status"];
+
+  tp_id  [shape=ellipse, label=<<u>id</u>>];
+  tp_t   [shape=ellipse, label="title"];
+  tp_dur [shape=ellipse, label="duration"];
+  tp_dl  [shape=ellipse, label="deadline"];
+  tp_req [shape=ellipse, label="talent_required"];
+  tp_st  [shape=ellipse, label="status"];
+
+  fp_id  [shape=ellipse, label=<<u>id</u>>];
+  fp_t   [shape=ellipse, label="title"];
+  fp_bud [shape=ellipse, label="budget_npr"];
+  fp_dl  [shape=ellipse, label="deadline"];
+  fp_st  [shape=ellipse, label="status"];
+
+  pro_id [shape=ellipse, label=<<u>id</u>>];
+  pro_bid[shape=ellipse, label="bid_amount"];
+  pro_dd [shape=ellipse, label="delivery_days"];
+  pro_st [shape=ellipse, label="status"];
+
+  cp_id  [shape=ellipse, label=<<u>id</u>>];
+  cp_t   [shape=ellipse, label="title"];
+  cp_ty  [shape=ellipse, label="type"];
+  cp_st  [shape=ellipse, label="status"];
+
+  cm_id  [shape=ellipse, label=<<u>id</u>>];
+  cm_b   [shape=ellipse, label="body"];
+  cm_st  [shape=ellipse, label="status"];
+
+  inv_id [shape=ellipse, label=<<u>id</u>>];
+  inv_msg[shape=ellipse, label="message"];
+  inv_st [shape=ellipse, label="status"];
+
+  // ---------- ATTRIBUTE LINKS ----------
+  U -> u_id; U -> u_name; U -> u_email; U -> u_pwd; U -> u_role; U -> u_stat;
+  P -> p_id; P -> p_uid; P -> p_phone; P -> p_loc; P -> p_title; P -> p_avail; P -> p_pub;
+  O -> o_id; O -> o_owner; O -> o_name; O -> o_slug; O -> o_ver;
+  SK -> s_id; SK -> s_name; SK -> s_slug;
+  SC -> sc_id; SC -> sc_name;
+  SDG -> sdg_id; SDG -> sdg_cd; SDG -> sdg_nm;
+  OPP -> opp_id; OPP -> opp_t; OPP -> opp_ty; OPP -> opp_dl; OPP -> opp_st;
+  APP -> app_id; APP -> app_cl; APP -> app_st;
+  TP -> tp_id; TP -> tp_t; TP -> tp_dur; TP -> tp_dl; TP -> tp_req; TP -> tp_st;
+  FP -> fp_id; FP -> fp_t; FP -> fp_bud; FP -> fp_dl; FP -> fp_st;
+  PRO -> pro_id; PRO -> pro_bid; PRO -> pro_dd; PRO -> pro_st;
+  CP -> cp_id; CP -> cp_t; CP -> cp_ty; CP -> cp_st;
+  CM -> cm_id; CM -> cm_b; CM -> cm_st;
+  INV -> inv_id; INV -> inv_msg; INV -> inv_st;
+
+  // ---------- RELATIONSHIPS ----------
+  R_has      [shape=diamond, style=filled, fillcolor="#FFFFFF", label="has"];
+  R_owns     [shape=diamond, style=filled, fillcolor="#FFFFFF", label="owns"];
+  R_posts_op [shape=diamond, style=filled, fillcolor="#FFFFFF", label="posts"];
+  R_creates  [shape=diamond, style=filled, fillcolor="#FFFFFF", label="creates"];
+  R_needs_op [shape=diamond, style=filled, fillcolor="#FFFFFF", label="requires"];
+  R_align_op [shape=diamond, style=filled, fillcolor="#FFFFFF", label="aligns"];
+  R_has_sk   [shape=diamond, style=filled, fillcolor="#FFFFFF", label="possesses"];
+  R_sk_cat   [shape=diamond, style=filled, fillcolor="#FFFFFF", label="groups"];
+  R_interest [shape=diamond, style=filled, fillcolor="#FFFFFF", label="interested_in"];
+  R_submits  [shape=diamond, style=filled, fillcolor="#FFFFFF", label="submits"];
+  R_receives [shape=diamond, style=filled, fillcolor="#FFFFFF", label="receives"];
+  R_saves    [shape=diamond, style=filled, fillcolor="#FFFFFF", label="saves"];
+  R_posts_tp [shape=diamond, style=filled, fillcolor="#FFFFFF", label="posts"];
+  R_needs_tp [shape=diamond, style=filled, fillcolor="#FFFFFF", label="requires"];
+  R_align_tp [shape=diamond, style=filled, fillcolor="#FFFFFF", label="aligns"];
+  R_sends    [shape=diamond, style=filled, fillcolor="#FFFFFF", label="sends"];
+  R_invited  [shape=diamond, style=filled, fillcolor="#FFFFFF", label="receives"];
+  R_inv_tp   [shape=diamond, style=filled, fillcolor="#FFFFFF", label="about"];
+  R_inv_opp  [shape=diamond, style=filled, fillcolor="#FFFFFF", label="about"];
+  R_client   [shape=diamond, style=filled, fillcolor="#FFFFFF", label="posts_as_client"];
+  R_sponsor  [shape=diamond, style=filled, fillcolor="#FFFFFF", label="sponsors"];
+  R_needs_fp [shape=diamond, style=filled, fillcolor="#FFFFFF", label="requires"];
+  R_bids     [shape=diamond, style=filled, fillcolor="#FFFFFF", label="submits"];
+  R_fp_props [shape=diamond, style=filled, fillcolor="#FFFFFF", label="receives"];
+  R_writes   [shape=diamond, style=filled, fillcolor="#FFFFFF", label="writes"];
+  R_has_cm   [shape=diamond, style=filled, fillcolor="#FFFFFF", label="has"];
+  R_wr_cm    [shape=diamond, style=filled, fillcolor="#FFFFFF", label="writes"];
+
+  U -> R_has [label="1"];        R_has -> P [label="0..1"];
+  U -> R_owns [label="1"];       R_owns -> O [label="0..1"];
+  O -> R_posts_op [label="1"];   R_posts_op -> OPP [label="N"];
+  U -> R_creates [label="1"];    R_creates -> OPP [label="N"];
+  OPP -> R_needs_op [label="M"]; R_needs_op -> SK [label="N"];
+  OPP -> R_align_op [label="N"]; R_align_op -> SDG [label="0..1"];
+  U -> R_has_sk [label="M"];     R_has_sk -> SK [label="N"];
+  SC -> R_sk_cat [label="1"];    R_sk_cat -> SK [label="N"];
+  U -> R_interest [label="M"];   R_interest -> SDG [label="N"];
+  U -> R_submits [label="1"];    R_submits -> APP [label="N"];
+  OPP -> R_receives [label="1"]; R_receives -> APP [label="N"];
+  U -> R_saves [label="M"];      R_saves -> OPP [label="N"];
+  O -> R_posts_tp [label="1"];   R_posts_tp -> TP [label="N"];
+  TP -> R_needs_tp [label="M"];  R_needs_tp -> SK [label="N"];
+  TP -> R_align_tp [label="N"];  R_align_tp -> SDG [label="0..1"];
+  O -> R_sends [label="1"];      R_sends -> INV [label="N"];
+  U -> R_invited [label="1"];    R_invited -> INV [label="N"];
+  TP -> R_inv_tp [label="1"];    R_inv_tp -> INV [label="0..N"];
+  OPP -> R_inv_opp [label="1"];  R_inv_opp -> INV [label="0..N"];
+  U -> R_client [label="1"];     R_client -> FP [label="N"];
+  O -> R_sponsor [label="1"];    R_sponsor -> FP [label="0..N"];
+  FP -> R_needs_fp [label="M"];  R_needs_fp -> SK [label="N"];
+  U -> R_bids [label="1"];       R_bids -> PRO [label="N"];
+  FP -> R_fp_props [label="1"];  R_fp_props -> PRO [label="N"];
+  U -> R_writes [label="1"];     R_writes -> CP [label="N"];
+  CP -> R_has_cm [label="1"];    R_has_cm -> CM [label="N"];
+  U -> R_wr_cm [label="1"];      R_wr_cm -> CM [label="N"];
+
+  // Invitations and proposals are separate entities and never share a node.
+  { rank=same; U; P; O; }
+}

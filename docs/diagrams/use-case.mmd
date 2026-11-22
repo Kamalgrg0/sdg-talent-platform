@@ -1,0 +1,73 @@
+flowchart LR
+    classDef actor fill:#eaf1ff,stroke:#164a8a,stroke-width:1.5px,color:#102a43
+    classDef usecase fill:#ffffff,stroke:#164a8a,stroke-width:1px,color:#102a43
+    classDef system fill:#f7f9fc,stroke:#164a8a,stroke-width:1px
+
+    V["Visitor"]:::actor
+    JS["Job Seeker"]:::actor
+    FL["Freelancer"]:::actor
+    EMP["Employer"]:::actor
+    ORG["Organization"]:::actor
+    ADM["Administrator"]:::actor
+
+    subgraph SYS["TalentBridge"]
+        UC01(["Register / Log in / Log out"]):::usecase
+        UC02(["Browse & filter opportunities"]):::usecase
+        UC03(["View opportunity details"]):::usecase
+        UC04(["Apply / save opportunity"]):::usecase
+        UC05(["Join / update talent pool"]):::usecase
+        UC06(["Search talent & view profile"]):::usecase
+        UC07(["Invite talent"]):::usecase
+        UC08(["Post & manage opportunities"]):::usecase
+        UC09(["Review applicants"]):::usecase
+        UC10(["Post talent project"]):::usecase
+        UC11(["Post freelance project"]):::usecase
+        UC12(["Submit proposal"]):::usecase
+        UC13(["Review proposals"]):::usecase
+        UC14(["Community posts & comments"]):::usecase
+        UC15(["Rule-based skill suggestions"]):::usecase
+        UC16(["Role dashboards"]):::usecase
+        UC17(["Admin moderation & user management"]):::usecase
+    end
+
+    V --> UC01
+    V --> UC02
+    V --> UC03
+    V --> UC06
+    V --> UC15
+    JS --> UC01
+    JS --> UC02
+    JS --> UC03
+    JS --> UC04
+    JS --> UC05
+    JS --> UC14
+    JS --> UC15
+    JS --> UC16
+    FL --> UC01
+    FL --> UC02
+    FL --> UC03
+    FL --> UC05
+    FL --> UC12
+    FL --> UC14
+    FL --> UC16
+    EMP --> UC01
+    EMP --> UC06
+    EMP --> UC07
+    EMP --> UC08
+    EMP --> UC09
+    EMP --> UC10
+    EMP --> UC11
+    EMP --> UC13
+    EMP --> UC16
+    ORG --> UC01
+    ORG --> UC06
+    ORG --> UC07
+    ORG --> UC08
+    ORG --> UC09
+    ORG --> UC10
+    ORG --> UC11
+    ORG --> UC13
+    ORG --> UC16
+    ADM --> UC15
+    ADM --> UC16
+    ADM --> UC17

@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<body style="margin:0;padding:24px;background:#f6f8fb;font-family:Segoe UI,Arial,sans-serif;color:#102a43;">
+  <div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #d9e2ec;border-radius:16px;padding:28px;">
+    <p style="margin:0 0 6px;color:#1f7a4d;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">New message</p>
+    <h1 style="margin:0 0 16px;font-size:22px;">{{ sender.name }}</h1>
+    <p style="margin:0 0 20px;color:#52667a;">{{ preview }}</p>
+    <a href="{{ app_url }}{{ link|default:'/messages' }}" style="display:inline-block;padding:11px 18px;border-radius:10px;background:#164a8a;color:#ffffff;text-decoration:none;font-weight:600;">Reply in your inbox</a>
+  </div>
+</body>
+</html>

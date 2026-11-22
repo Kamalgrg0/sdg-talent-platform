@@ -1,0 +1,8 @@
+You have an offer: {{ opportunity.title }}
+
+{{ organization.name }} has offered you this role. Review the offer and accept or decline it from your dashboard:
+{{ app_url }}{{ link|default:'/dashboard/job-seeker' }}
+
+Offers stay open until you respond.
+
+This is an automated message from TalentBridge.

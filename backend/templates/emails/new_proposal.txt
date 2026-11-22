@@ -1,0 +1,7 @@
+New proposal: {{ project.title }}
+
+{{ freelancer.name }} submitted a proposal of NPR {{ proposal.bid_amount }} with delivery in {{ proposal.delivery_days }} days.
+
+Review the proposal: {{ app_url }}{{ link|default:'/dashboard/employer' }}
+
+This is an automated message from TalentBridge.

@@ -1,0 +1,235 @@
+erDiagram
+    USERS ||--o| PROFILES : has
+    USERS ||--o| ORGANIZATIONS : owns
+    USERS ||--o{ OPPORTUNITIES : creates
+    ORGANIZATIONS ||--o{ OPPORTUNITIES : posts
+    SDGS |o--o{ OPPORTUNITIES : aligns
+    OPPORTUNITIES ||--o{ OPPORTUNITY_SKILLS : requires
+    SKILLS ||--o{ OPPORTUNITY_SKILLS : required_by
+    SKILL_CATEGORIES ||--o{ SKILLS : groups
+    USERS ||--o{ USER_SKILLS : possesses
+    SKILLS ||--o{ USER_SKILLS : held_by
+    USERS ||--o{ USER_SDGS : interested_in
+    SDGS ||--o{ USER_SDGS : followed_by
+    USERS ||--o{ APPLICATIONS : submits
+    OPPORTUNITIES ||--o{ APPLICATIONS : receives
+    USERS ||--o{ SAVED_OPPORTUNITIES : saves
+    OPPORTUNITIES ||--o{ SAVED_OPPORTUNITIES : saved_in
+    ORGANIZATIONS ||--o{ TALENT_PROJECTS : posts
+    USERS ||--o{ TALENT_PROJECTS : creates
+    SDGS |o--o{ TALENT_PROJECTS : aligns
+    TALENT_PROJECTS ||--o{ TALENT_PROJECT_SKILLS : requires
+    SKILLS ||--o{ TALENT_PROJECT_SKILLS : required_by
+    ORGANIZATIONS ||--o{ INVITATIONS : sends
+    USERS ||--o{ INVITATIONS : receives
+    TALENT_PROJECTS |o--o{ INVITATIONS : about_project
+    OPPORTUNITIES |o--o{ INVITATIONS : about_opportunity
+    USERS ||--o{ FREELANCE_PROJECTS : client
+    ORGANIZATIONS |o--o{ FREELANCE_PROJECTS : sponsors
+    FREELANCE_PROJECTS ||--o{ PROJECT_SKILLS : requires
+    SKILLS ||--o{ PROJECT_SKILLS : required_by
+    FREELANCE_PROJECTS ||--o{ PROPOSALS : receives
+    USERS ||--o{ PROPOSALS : submits
+    USERS ||--o{ NOTIFICATIONS : receives
+    USERS ||--o{ COMMUNITY_POSTS : writes
+    COMMUNITY_POSTS ||--o{ COMMENTS : has
+    USERS ||--o{ COMMENTS : writes
+
+    USERS {
+        int id PK
+        varchar name
+        varchar email UK
+        varchar password_hash
+        enum role
+        enum status
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    PROFILES {
+        int id PK
+        int user_id FK,UK
+        varchar phone
+        varchar location
+        varchar professional_title
+        text bio
+        text education
+        text experience
+        enum availability
+        varchar portfolio_url
+        varchar linkedin_url
+        boolean is_public
+    }
+
+    ORGANIZATIONS {
+        int id PK
+        int owner_user_id FK,UK
+        varchar name
+        varchar slug UK
+        text description
+        varchar website
+        varchar location
+        varchar contact_email
+        boolean is_verified
+    }
+
+    SKILL_CATEGORIES {
+        int id PK
+        varchar name UK
+        varchar slug UK
+        varchar description
+        int sort_order
+    }
+
+    SKILLS {
+        int id PK
+        int category_id FK
+        varchar name UK
+        varchar slug UK
+        varchar description
+    }
+
+    USER_SKILLS {
+        int user_id PK,FK
+        int skill_id PK,FK
+        enum level
+    }
+
+    SDGS {
+        int id PK
+        varchar code UK
+        varchar name
+        text description
+        varchar color_hex
+    }
+
+    USER_SDGS {
+        int user_id PK,FK
+        int sdg_id PK,FK
+    }
+
+    OPPORTUNITIES {
+        int id PK
+        int organization_id FK
+        int created_by_user_id FK
+        int sdg_id FK
+        varchar title
+        text description
+        text responsibilities
+        text requirements
+        varchar location
+        enum type
+        varchar category
+        boolean is_remote
+        date deadline
+        enum status
+    }
+
+    OPPORTUNITY_SKILLS {
+        int opportunity_id PK,FK
+        int skill_id PK,FK
+    }
+
+    APPLICATIONS {
+        int id PK
+        int opportunity_id FK
+        int user_id FK
+        text cover_letter
+        enum status
+    }
+
+    SAVED_OPPORTUNITIES {
+        int user_id PK,FK
+        int opportunity_id PK,FK
+    }
+
+    TALENT_PROJECTS {
+        int id PK
+        int organization_id FK
+        int created_by_user_id FK
+        int sdg_id FK
+        varchar title
+        text description
+        varchar duration
+        varchar location
+        boolean is_remote
+        int talent_required
+        date deadline
+        enum status
+    }
+
+    TALENT_PROJECT_SKILLS {
+        int talent_project_id PK,FK
+        int skill_id PK,FK
+    }
+
+    INVITATIONS {
+        int id PK
+        int sender_user_id FK
+        int organization_id FK
+        int talent_user_id FK
+        int talent_project_id FK
+        int opportunity_id FK
+        text message
+        enum status
+    }
+
+    FREELANCE_PROJECTS {
+        int id PK
+        int client_user_id FK
+        int organization_id FK
+        varchar title
+        text description
+        decimal budget_npr
+        date deadline
+        varchar duration
+        enum status
+    }
+
+    PROJECT_SKILLS {
+        int freelance_project_id PK,FK
+        int skill_id PK,FK
+    }
+
+    PROPOSALS {
+        int id PK
+        int freelance_project_id FK
+        int freelancer_user_id FK
+        decimal bid_amount
+        int delivery_days
+        text cover_letter
+        varchar relevant_skills
+        varchar portfolio_url
+        enum status
+    }
+
+    NOTIFICATIONS {
+        bigint id PK
+        int user_id FK
+        varchar type
+        varchar title
+        varchar message
+        varchar link
+        boolean is_read
+    }
+
+    COMMUNITY_POSTS {
+        int id PK
+        int user_id FK
+        varchar title
+        text body
+        enum type
+        datetime event_date
+        varchar event_location
+        varchar resource_url
+        enum status
+    }
+
+    COMMENTS {
+        int id PK
+        int post_id FK
+        int user_id FK
+        text body
+        enum status
+    }
+

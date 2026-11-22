@@ -1,0 +1,10 @@
+New message from {{ sender.name }}
+
+{{ preview }}
+
+Reply in your inbox:
+{{ app_url }}{{ link|default:'/messages' }}
+
+You can turn off email copies for messages from your account settings.
+
+This is an automated message from TalentBridge.

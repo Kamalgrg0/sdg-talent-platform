@@ -1,0 +1,8 @@
+New application: {{ opportunity.title }}
+
+{{ applicant.name }} applied for this opportunity.
+
+Review the cover letter and update the application status from your dashboard:
+{{ app_url }}{{ link|default:'/dashboard/employer' }}
+
+This is an automated message from TalentBridge.
